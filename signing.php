@@ -1,13 +1,6 @@
 <?php
   session_start();
-
-  if ((isset($_SESSION['zalogowany'])) && $_SESSION['zalogowany'] == true) {
-      header('location: ./main2.php');
-  } else {
-     header('location: ./signing.php');
-  }
-
-
+  
   require_once "connect.php";
 ?>
 
@@ -119,39 +112,46 @@
 
         <?php
 
-require_once "connect.php";
-
-if(isset($_POST['loguj'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
     $ip = $_SERVER['REMOTE_ADDR'];
+
+    $passwd = md5($password);
+    
+if(!$connect->connect_errno) {
+
+       $sql = "SELECT * FROM `clients` WHERE `id` = 3";
+       
+       $result = $connect -> query($sql);
+
+    } else {
+
+     echo "Błędne połączenie z bazą danych!";
+    }
+
+      while($clients = $result -> fetch_Assoc()) {
+
+        if($login == "$clients[login]" && $passwd == "$clients[haslo]" ) {
+          
+          $_SESSION['zalogowany'] = true;
+          $_SESSION['login'] = $login;
+
+          $sql = "UPDATE `clients` SET (`logowanie` = '".time().", `ip` = '".$ip."'') WHERE `login` = '".$login."';";
+          ?>
+          <script> alert('Pomyślnie zalogowano!')</script>
+          <?php
+            header('location: ./main.php');
+
+      } else {
+?>
+    <script> alert('Nie udało się zalogować!')</script>;
+    <script>history.back()</script>;
+    <?php
+    exit();
+
+  } 
 }
-    if(!$connect->connect_errno) {
-
-    $sql = "SELECT `login` AND `haslo` FROM `clients`";
-
-    $result = $connect -> query($sql);
-
-    if($clients[login] == $login && $clients[haslo] == $password) {
-
-      $_SESSION['zalogowany'] = true;
-      $_SESSION['login'] = $login;
-
-      $sql = "UPDATE `clients` SET (`logowanie` = '".time().", `ip` = '".$ip."'') WHERE `login` = '".$login."';";
-      
-      echo "<script> alert('Pomyślnie zalogowano!')</script>";
-      header('location: ./main.php');
-
-    } else 
-
-    echo "<script> alert('Nie udało się zalogować!')</script>";
-    echo "<script>history.back()</script>";
-
-  } else {
-
-    echo "Błędne połączenie z bazą danych!";
-  }
-
+    
 ?>
 
         <a href="./main.php">
