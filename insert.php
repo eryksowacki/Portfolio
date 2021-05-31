@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require_once './connect.php';
 
   foreach ($_POST as $key => $value) {
@@ -103,9 +104,23 @@
         </td>
 
         <td>
-          <a href="./signing.php">
-            <div class="actual">
-               Logowanie
+        <?php
+              if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']=true) {
+                echo <<< WY
+                <a href="./logout.php">
+                <div class="actual">
+                Wyloguj
+              
+WY;
+              } else {
+                echo <<< LO
+                <a href="./signing.php">
+                <div class="actual">
+                Logowanie
+              
+LO;
+              }
+          ?>
             </div>
           </a>
         </td>

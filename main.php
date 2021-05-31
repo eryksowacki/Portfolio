@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -34,7 +37,7 @@
       </td>
 
       <td>
-        <a href="./offerr.php">
+        <a href="./offer.php">
           <div class="actual">
             Oferta
           </div>
@@ -66,10 +69,25 @@
       </td>
 
       <td>
-        <a href="./signing.php">
-          <div class="actual">
-             Logowanie
-          </div>
+      
+          <?php
+              if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']=true) {
+                echo <<< WY
+                <a href="./logout.php">
+                <div class="actual">
+                Wyloguj
+              
+WY;
+              } else {
+                echo <<< LO
+                <a href="./signing.php">
+                <div class="actual">
+                Logowanie
+              
+LO;
+              }
+          ?>
+             </div>
         </a>
       </td>
 
@@ -79,10 +97,7 @@
     <div class="background">
       <div class="mainpage">
           <h3>Strona Główna</h3>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porttitor facilisis odio, ut elementum orci vulputate quis. Vestibulum posuere massa euismod faucibus tincidunt. Nullam est elit, blandit eu urna egestas, efficitur consequat nunc. Vivamus id pharetra dolor, ac consectetur tortor. Maecenas in odio id nisl facilisis dictum et ac dui. Phasellus gravida augue leo, quis pulvinar tortor imperdiet gravida. Mauris placerat feugiat eros, in suscipit purus rhoncus sit amet. Mauris elementum orci a nulla efficitur, eu efficitur ligula pretium. Nam ligula nulla, gravida eu sodales vel, sollicitudin quis odio. Duis convallis turpis et sollicitudin blandit. Suspendisse aliquet non lorem at consectetur. Sed velit eros, sagittis et turpis sed, pulvinar suscipit justo. Suspendisse enim eros, maximus at massa et, bibendum egestas dolor. Fusce nec nisi cursus, semper leo et, auctor neque.
-
-In nisi magna, lacinia et odio a, vehicula iaculis arcu. Suspendisse suscipit purus quis convallis lacinia. Nulla faucibus dui a turpis scelerisque ullamcorper. Nunc imperdiet aliquam felis vel condimentum. Etiam sit amet vulputate mauris. Phasellus luctus est tempus, vestibulum augue ut, ultrices nulla. Praesent quis sapien ultrices ligula viverra consequat ac quis nisi. In purus erat, maximus id nisi nec, ullamcorper tincidunt purus. Sed sagittis leo nec dui egestas porttitor. Mauris eu feugiat nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac lacus lorem. Sed at sapien augue. Etiam varius eros nibh, non dignissim sapien molestie imperdiet.
-
+        Lorem ipsum
       </div>
 
     </div>

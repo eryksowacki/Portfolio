@@ -1,9 +1,6 @@
 <?php
   session_start();
-  
-  require_once "connect.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -72,9 +69,23 @@
         </td>
 
         <td>
-          <a href="./signing.php">
-            <div class="actual">
-               Logowanie
+        <?php
+              if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']=true) {
+                echo <<< WY
+                <a href="./logout.php">
+                <div class="actual">
+                Wyloguj
+              
+WY;
+              } else {
+                echo <<< LO
+                <a href="./signing.php">
+                <div class="actual">
+                Logowanie
+              
+LO;
+              }
+          ?>
             </div>
           </a>
         </td>
@@ -88,7 +99,7 @@
 
         <br><br>
 
-        <form action="signing.php" method="post">
+        <form action="login.php" method="post">
 
         <b>Login:</b>
         <input type="text" name="login" placeholder="Wprowadź login">
@@ -109,50 +120,6 @@
         <br><br><br>
 
         </form>
-
-        <?php
-
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-    $ip = $_SERVER['REMOTE_ADDR'];
-
-    $passwd = md5($password);
-    
-if(!$connect->connect_errno) {
-
-       $sql = "SELECT * FROM `clients` WHERE `id` = 3";
-       
-       $result = $connect -> query($sql);
-
-    } else {
-
-     echo "Błędne połączenie z bazą danych!";
-    }
-
-      while($clients = $result -> fetch_Assoc()) {
-
-        if($login == "$clients[login]" && $passwd == "$clients[haslo]" ) {
-          
-          $_SESSION['zalogowany'] = true;
-          $_SESSION['login'] = $login;
-
-          $sql = "UPDATE `clients` SET (`logowanie` = '".time().", `ip` = '".$ip."'') WHERE `login` = '".$login."';";
-          ?>
-          <script> alert('Pomyślnie zalogowano!')</script>
-          <?php
-            header('location: ./main.php');
-
-      } else {
-?>
-    <script> alert('Nie udało się zalogować!')</script>;
-    <script>history.back()</script>;
-    <?php
-    exit();
-
-  } 
-}
-    
-?>
 
         <a href="./main.php">
           Powrót do strony głównej
