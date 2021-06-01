@@ -95,31 +95,47 @@ LO;
     </div>
     <div class="background">
       <div class="mainpage">
-          <h3>Wybór godziny</h3>
+          <h3>Finalizacja rezerwacji</h3>
 
-          Wybrana data:
-
-          <br>
-
-          <?php
-            $_SESSION['data'] = $_POST['date'];
-            echo $_SESSION['data'];
-          ?>
-
-          <br>
-
-          Wybór godziny treningu:
-
-          <br><br><br>
-
-          <form action="stepthird.php" method="POST">
-            <input type="time" name="time">
-
-            <br><br><br>
+        <?php 
             
-            <input type="submit" name="submit" value="Wybór intruktora">
+        require_once "connect.php";
+
+                  $day = $_SESSION['data'];
+                  $hour = $_SESSION['godzina'];
+                  $instructor = $_SESSION['instruktor'];
+                  echo $day;
+                  echo $hour;
+                  echo $instructor;
+            
+              if (!$connect->connect_errno) {
+                  if(!empty($day || $hour || $instructor)){
+
+                      $sql = "INSERT INTO `reservations` (`data`, `godzina`, `intruktor`) VALUES ('$day','$hour', '$instructor')";
+            
+                      $result = $connect -> query($sql);
+
+                      echo "<script> alert('Rezerwacja przebiegła pomyślnie! Skontaktujemy się telefonicznie by potwierdzić trening')</script>";
+                    
+
+                    } else {
+            
+                    echo "<script> alert('Nie udało się zarezerwować')</script>";
+                    
+                
+            }
+        }
+              $connect->close();
+              
+            ?>
+        
+
+            <br><br>
+          <form action="order.php" method="POST">
+            <input type="submit" name="submit" value="Zamów trening">
           </form>
 
+              <br>
           <a href="main.php">
             Powrót do strony głównej
           </a>

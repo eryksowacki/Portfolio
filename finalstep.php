@@ -95,31 +95,40 @@ LO;
     </div>
     <div class="background">
       <div class="mainpage">
-          <h3>Wybór godziny</h3>
+          <h3>Finalizacja rezerwacji</h3>
 
           Wybrana data:
 
           <br>
 
           <?php
-            $_SESSION['data'] = $_POST['date'];
             echo $_SESSION['data'];
           ?>
 
           <br>
 
-          Wybór godziny treningu:
+          Wybrana godzina treningu:
 
-          <br><br><br>
+              <br>
 
-          <form action="stepthird.php" method="POST">
-            <input type="time" name="time">
+            <?php 
+                echo $_SESSION['godzina'];
+            ?>
+          <br>
+          Wybrany instruktor:
 
-            <br><br><br>
-            
-            <input type="submit" name="submit" value="Wybór intruktora">
+          <br>
+
+            <?php 
+                $_SESSION['instruktor'] = $_POST['instructor'];
+                echo $_SESSION['instruktor'];
+            ?>
+            <br><br>
+          <form action="order.php" method="POST">
+            <input type="submit" name="submit" value="Zamów trening">
           </form>
 
+              <br>
           <a href="main.php">
             Powrót do strony głównej
           </a>

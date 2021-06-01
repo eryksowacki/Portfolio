@@ -104,21 +104,21 @@ LO;
         <a href="">
           <div class="slideshow-container">
               <div class="mySlides fade" style="display: block;">
-              <img src="./1.jpg">
+              <img src="./7.jpg">
               <div class="text">Marcin Kowalski</div>
           </div>
         </a>
 
         <a href="">
           <div class="mySlides fade">
-            <img src="./4.jpg">
+            <img src="./8.jpg">
             <div class="text">Krzysztof Nowak</div>
           </div>
         </a>
 
         <a href="">
           <div class="mySlides fade">
-            <img src="./5.jpg">
+            <img src="./9.jpg">
             <div class="text">Magdalena Poznańska</div>
           </div>
         </a>
