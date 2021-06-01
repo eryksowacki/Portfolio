@@ -132,7 +132,7 @@ LO;
       <div class="mainpage">
         <br><br><br><br>
           <a href="signing.php">Powrót do logowania</a>
-        <br><br><br><br><br><br><br>
+        <br><br><br><br><br><br>
         <a href="./main.php">
           Powrót do strony głównej
         </a>

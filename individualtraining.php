@@ -1,7 +1,9 @@
 <?php
   session_start();
-?>
-<!DOCTYPE html>
+
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']=true) {
+    echo <<< WEB
+    <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -69,6 +71,8 @@
         </td>
 
         <td>
+WEB;
+?>
         <?php
               if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']=true) {
                 echo <<< WY
@@ -86,6 +90,8 @@ WY;
 LO;
               }
           ?>
+          <?php
+          echo <<< WEB
             </div>
           </a>
         </td>
@@ -98,10 +104,14 @@ LO;
           <h3>Wybór terminu</h3>
 
           Aktualna data:
+WEB;
+?>
           <?php
             $date =  date('d-m-Y');
             echo $date;
-          ?>
+            
+echo <<< WEB
+          
 
           <br><br><br><br>
 
@@ -125,3 +135,9 @@ LO;
 
   </body>
 </html>
+WEB;
+            } else {
+              header('Location: ./signing.php');
+            }
+?>
+

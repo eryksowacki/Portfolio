@@ -1,7 +1,12 @@
 <?php
   session_start();
-?>
-<!DOCTYPE html>
+  
+  if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']=true) {
+    header('Location: main.php');
+  } else {
+    echo <<< WEB
+
+    <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -69,26 +74,14 @@
         </td>
 
         <td>
-        <?php
-              if (isset($_SESSION['zalogowany']) && $_SESSION['zalogowany']=true) {
-                echo <<< WY
-                <a href="./logout.php">
-                <div class="actual">
-                Wyloguj
-              
-WY;
-              } else {
-                echo <<< LO
-                <a href="./signing.php">
-                <div class="actual">
-                Logowanie
-              
-LO;
-              }
-          ?>
-            </div>
+        <a href="./logout.php">
+        <div class="actual">
+        Logowanie
+        </div>
           </a>
         </td>
+       
+           
 
         </table>
 
@@ -135,3 +128,8 @@ LO;
 
   </body>
 </html>
+  }
+
+WEB;
+  }
+?>

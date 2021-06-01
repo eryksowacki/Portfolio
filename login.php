@@ -33,9 +33,11 @@
 
              $sql = "UPDATE `clients` SET (`logowanie` = '".time().", `ip` = '".$ip."'') WHERE `login` = '".$login."';";
 
-            header('location: ./main.php');
+            header('Location: ./main.php');
           } else {
-
+            echo "Nieprawidłowy login lub hasło";
+            $_SESSION['zalogowany'] = false;
+            header('Location: signing.php');
   }
  }
 ?>

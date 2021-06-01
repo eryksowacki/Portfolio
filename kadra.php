@@ -136,7 +136,7 @@ LO;
             <span class="dot" onclick="currentSlide(3)"></span>
           </div>
 
-            <br>
+            
 
         <a href="./main.php">
           Powrót do strony głównej

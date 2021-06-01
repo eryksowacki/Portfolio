@@ -104,9 +104,7 @@ LO;
                   $day = $_SESSION['data'];
                   $hour = $_SESSION['godzina'];
                   $instructor = $_SESSION['instruktor'];
-                  echo $day;
-                  echo $hour;
-                  echo $instructor;
+                 
             
               if (!$connect->connect_errno) {
                   if(!empty($day || $hour || $instructor)){
@@ -130,12 +128,12 @@ LO;
             ?>
         
 
-            <br><br>
+            <br><br><br><br>
           <form action="order.php" method="POST">
             <input type="submit" name="submit" value="Zamów trening">
           </form>
 
-              <br>
+              <br><br><br><br>
           <a href="main.php">
             Powrót do strony głównej
           </a>

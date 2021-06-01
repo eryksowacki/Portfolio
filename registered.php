@@ -105,10 +105,10 @@ LO;
 
         <form action="insert.php" method="post">
 
-          1. <input type="text" name="login" placeholder="Podaj login:"> <br>
-          2. <input type="password" name="password" placeholder="Podaj hasło:"> <br>
-          3. <input type="password" name="passwd" placeholder="Potwierdź hasło:"> <br>
-          4. <input type="email" name="email" placeholder="Podaj e-mail:"> <br>
+          1. <input type="text" name="login" placeholder="Podaj login:" required minlength="8" maxlength="20"> <br>
+          2. <input type="password" name="password" placeholder="Podaj hasło:" required required minlength="8" maxlength="20"> <br>
+          3. <input type="password" name="passwd" placeholder="Potwierdź hasło:" required required minlength="8" maxlength="20"> <br>
+          4. <input type="email" name="email" placeholder="Podaj e-mail:" required> <br>
              <input type="submit" value="Zarejestruj się">
 
         <br><br><br>
